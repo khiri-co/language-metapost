@@ -87,6 +87,7 @@
   # Functions
   { 'include': '#mode_command' }
   { 'include': '#pseudo_procedure_commands' }
+  { 'include': '#macro_definition_keywords' }
   { 'include': '#commands' }
   { 'include': '#macros' }
   # Keywords
