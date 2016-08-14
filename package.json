@@ -1,13 +1,14 @@
 {
   "name": "language-metapost",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Syntax highlighting for MetaPost",
-  "keywords": [ "metapost" ],
+  "keywords": [
+    "metapost"
+  ],
   "repository": "https://github.com/khiri-co/language-metapost",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
