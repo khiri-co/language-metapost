@@ -1,0 +1,197 @@
+'name': 'MetaPost'
+'scopeName': 'source.metapost'
+'fileTypes': [
+  'MP'
+]
+
+'repository': {
+  # Comments
+  'line_comment': {
+    'comment': 'Single-line comment'
+    'name': 'comment.line.metapost'
+    'begin': '%'
+    'end': '$'
+  }
+  # Operators
+  'operators': {
+    'comment': 'Opertors'
+    'name': 'keyword.other.metapost'
+    'match': '\\b(of|to|abs|and|angle|arclength|arctime|ASCII|bbox|blackpart|bluepart|boolean|bot|bounded|ceiling|center|char|clipped|cmykcolor|color|colormodel|colorpart|cosd|cutafter|cutbefore|cyanpart|cycle|dashpart|decimal|dir|direction|directionpoint|directiontime|div|dotprod|filled|floor|fontpart|fontsize|glyph|greenpart|greypart|hex|infont|intersectionpoint|intersectiontimes|tiontimes|inverse|known|length|lft|llcorner|lrcorner|magentapart|makepath|makepen|mexp|mlog|mod|normaldeviate|not|numeric|oct|odd|or|pair|path|pathpart|pen|penoffset|penpart|picture|point|postcontrol|precontrol|readfrom|redpart|reverse|rgbcolor|rotated|round|rt|scaled|scantoken|shifted|sind|slanted|sqrt|str|string|stroked|subpath|substring|textpart|textual|top|transfor|transfor|ulcorner|uniformdeviate|unitvec|unknown|urcorner|whatever|xpart|xscaled|xxpart|xypart|yellowpart|ypart|yscaled|yxpart|yypart|zscaled)\\b|\\.\\.'
+  }
+  # Commands
+  'commands': {
+    'comment': 'Commands'
+    'name': 'support.function.builtin.metapost'
+    'match': '\\b(addto|clip|closefrom|cutdraw|dashed|draw|drawarrow|drawdblarrow|errhelp|errmessage|filenametemplate|fill|filldraw|fontmapfile|fontmapline|interim|let|loggingall|message|newinternal|pickup|save|setbounds|shipout|show|showdependencies|showtoken|showvariable|special|tracingall|tracingnone|undraw|unfill|unfilldraw|withcmykcolor|withcolor|withgreyscale|withoutcolor|withpen|withpostscript|withprescript|withrgbcolor|write)\\b'
+  }
+  'macros': {
+    'comment': 'Function-like Macros'
+    'name': 'support.function.builtin.metapost'
+    'match': '\\b(buildcycle|dashpattern|decr|dotlabel|dotlabel|dotlabels|drawdot|drawoptions|image|incr|label|label|labels|max|max|min|min|thelabel|thelabel|z)\\b'
+  }
+  'internal_variables': {
+    'comment': 'Internal Variables'
+    'name': 'variable.language.metapost'
+    'match': '\\b(ahangle|ahlength|bboxmargin|charcode|day|defaultcolormodel|defaultpen|defaultscale|hour|hppp|jobname|labeloffset|linecap|linejoin|minute|miterlimit|month|numberprecision|numbersystem|outputfilename|outputformat|outputformatoptions|outputtemplate|pausing|prologues|showstopping|time|tracingoutput|tracingcapsules|tracingchoices|tracingcommands|tracingequations|tracinglostchars|tracingmacros|tracingonline|tracingrestores|tracingspecs|tracingstats|tracingtitles|truecorners|warningcheck|vppp|year)\\b'
+  }
+  'program_keywords': {
+    'comment': 'Program Keywords'
+    'name': 'keyword.other.metapost'
+    'match': '\\b(end)\\b'
+  }
+  'compound_keywords': {
+    'comment': 'Compound Keywords'
+    'name': 'keyword.other.metapost'
+    'match': '\\b(begingroup|endgroup|beginfig|endfig)\\b'
+  }
+  'macro_definition_keywords': {
+    'comment': 'Macro Definition Keywords'
+    'name': 'keyword.other.metapost'
+    'match': '\\b(def|enddef|vardef|expr|suffix|text|primary|secondary|tertiary|primarydef|secondarydef|tertiarydef)\\b'
+  }
+  'pseudo_procedure_commands': {
+    'comment': 'Pseudo Procedure Commands'
+    'name': 'support.function.builtin.metapost'
+    'match': '\\b(drawoptions|(label|dotlabel|labels|dotlabels)(\\.(lft|rt|top|bot|ulft|urt|llft|lrt))?)\\b'
+  }
+  'mode_command': {
+    'comment': 'Mode Commands'
+    'name': 'support.function.builtin.metapost'
+    'match': '\\b(batchmode|nonstopmode|scrollmode|errorstopmode)\\b'
+  }
+  
+  # String content
+  'escaped_sequence': {
+    'comment': 'Escaped Sequence'
+    'patterns': [
+      {
+        'name': 'constant.character.escape.metapost'
+        'match': '%({[a-zA-Z ]+}|[%jcymdHM])'
+      }
+      {
+        'name': 'invalid.illegal.unknown-escape.metapost'
+        'match': '%.'
+      }
+    ]
+  }
+  'cannot_contain_newlines': {
+    'name': 'invalid.illegal.string.metapost'
+    'begin': '\\n'
+    'end': '(?=")'
+  }
+
+}
+'patterns': [
+  # Comments
+  { 'include': '#line_comment' }
+  # Functions
+  { 'include': '#mode_command' }
+  { 'include': '#pseudo_procedure_commands' }
+  { 'include': '#commands' }
+  { 'include': '#macros' }
+  # Keywords
+  { 'include': '#operators' }
+  { 'include': '#program_keywords' }
+  { 'include': '#compound_keywords' }
+
+  { 'include': '#internal_variables' }
+  # Language
+  {
+    'comment': 'Control keyword'
+    'name': 'keyword.control.metapost'
+    'match': '\\b(if|fi|else|elseif|for|endfor|forsuffixes|forever|upto|downto|step|until)\\b'
+  }
+  # String
+  {
+    'comment': 'Double-quote string literal'
+    'name': 'string.quoted.double.metapost'
+    'begin': '"'
+    'end': '"'
+    # String constants cannot contain double quotes or newlines
+    'patterns': [
+      { 'include': '#escaped_sequence' }
+      { 'include': '#cannot_contain_newlines' }
+    ]
+  }
+  # Numbers
+  {
+    'comment': 'Numbers'
+    'name': 'constant.numeric.metapost'
+    'match': '([0-9]+(\\.[0-9]*)?|\\.[0-9]*)'
+  }
+  # Table 9: Predened Constants
+  {
+    'comment': 'Boolean constant'
+    'name': 'constant.language.boolean.metapost'
+    'match': '\\b(FALSE|TRUE)\\b'
+  }
+  {
+    'comment': 'Color constant'
+    'name': 'support.constant.other.metapost'
+    'match': '\\b(black|blue|green|red|white)\\b'
+  }
+  {
+    'comment': 'Numeric constant'
+    'name': 'constant.language.numeric.metapost'
+    'match': '(\\b|(?<=[0-9]))(rounded|beveled|bp|butt|cc|cm|dd|epsilon|in|infinity|mitered|mm|pc|pt|squared)(\\b|(?=[0-9]))'
+  }
+  {
+    'comment': 'Pair constant'
+    'name': 'support.constant.other.metapost'
+    'match': '\\b(down|left|origin|right|up)\\b'
+  }
+  {
+    'comment': 'Path constant'
+    'name': 'constant.language.other.metapost'
+    'match': '\\b(fullcircle|halfcircle|quartercircle|unitsquare)\\b'
+  }
+  {
+    'comment': 'Pen constant'
+    'name': 'constant.language.other.metapost'
+    'match': '\\b(nullpen|pencircle|pensquare)\\b'
+  }
+  {
+    'comment': 'Picture constant'
+    'name': 'constant.language.other.metapost'
+    'match': '\\b(evenly|nullpicture|withdots)\\b'
+  }
+  {
+    'comment': 'String constant'
+    'name': 'constant.language.string.metapost'
+    'match': '\\b(ditto|EOF|mpversion)\\b'
+  }
+  {
+    'comment': 'Transform constant'
+    'name': 'constant.language.other.metapost'
+    'match': '\\b(identity)\\b'
+  }
+  # LaTeX (language-latex)
+  {
+    'name': 'source.latex'
+    'begin': '\\b(verbatimtex)\\b'
+    'end': '\\b(etex)\\b'
+    'beginCaptures': {
+      '1': { 'name': 'keyword.other.metapost' }
+    }
+    'endCaptures': {
+      '1': { 'name': 'keyword.other.metapost' }
+    }
+    'patterns': [
+      { 'include': 'text.tex.latex' }
+    ]
+  }
+  {
+    'name': 'source.latex'
+    'begin': '\\b(btex)\\b'
+    'end': '\\b(etex)\\b'
+    'beginCaptures': {
+      '1': { 'name': 'keyword.other.metapost' }
+    }
+    'endCaptures': {
+      '1': { 'name': 'keyword.other.metapost' }
+    }
+    'patterns': [
+      { 'include': 'text.tex' }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "name": "language-metapost",
+  "main": "./lib/language-metapost",
+  "version": "0.0.0",
+  "description": "Syntax highlighting for MetaPost",
+  "keywords": [ "metapost" ],
+  "repository": "https://github.com/atom/language-metapost",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
