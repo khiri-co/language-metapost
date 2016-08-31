@@ -8,7 +8,7 @@
   # Comments
   'line_comment': {
     'comment': 'Single-line comment'
-    'name': 'comment.line.metapost'
+    'name': 'comment.line.percentage.metapost'
     'begin': '%'
     'end': '$'
   }
@@ -143,12 +143,12 @@
   }
   {
     'comment': 'Path constant'
-    'name': 'constant.language.other.metapost'
+    'name': 'support.constant.other.metapost'
     'match': '\\b(fullcircle|halfcircle|quartercircle|unitsquare)\\b'
   }
   {
     'comment': 'Pen constant'
-    'name': 'constant.language.other.metapost'
+    'name': 'support.constant.other.metapost'
     'match': '\\b(nullpen|pencircle|pensquare)\\b'
   }
   {
